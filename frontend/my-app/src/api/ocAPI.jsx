@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api/ocs';
+const API_AUTH_URL = 'http://localhost:5000/api/auth';
+
 
 // Get all OCs
 export const getOCs = async () => {
@@ -50,4 +52,14 @@ export const deleteOC = async (id) => {
   } catch (error) {
     console.error('Error deleting OC:', error);
   }
+};
+
+export const registerUser = async (userData) => {
+  const res = await axios.post(`${API_AUTH_URL}/register`, userData);
+  return res.data;
+};
+
+export const loginUser = async (userData) => {
+  const res = await axios.post(`${API_AUTH_URL}/login`, userData);
+  return res.data;
 };

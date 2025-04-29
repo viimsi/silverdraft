@@ -1,15 +1,18 @@
-import React from 'react';
-import OCForm from './components/OCForm';
-import OCList from './components/OCList';
-import './App.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Login from './pages/LoginPage';
+import Register from './pages/RegisterPage';
 
 function App() {
   return (
-    <div>
-      <h1>OC Management</h1>
-      <OCForm />
-      <OCList />
-    </div>
+    <BrowserRouter>
+      <nav>
+        <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
+      </nav>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
