@@ -68,3 +68,13 @@ export const loginUser = async (userData) => {
   const res = await API.post(`${API_AUTH_URL}/login`, userData);
   return res.data;
 };
+
+export const updateUser = async (userData) => {
+  try {
+    const response = await API.put(userData);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
