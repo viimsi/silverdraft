@@ -5,8 +5,7 @@ import axios from 'axios';
 const Login = () => {
   const handleLogin = async data => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', data);
-      localStorage.setItem('token', res.data.token);
+      await axios.post('http://localhost:5000/api/auth/login', data, { withCredentials: true });
       alert('Login successful!');
     } catch (err) {
       alert(err.response.data.message || 'Login failed');

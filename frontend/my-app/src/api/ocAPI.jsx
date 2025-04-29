@@ -3,11 +3,16 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5000/api/ocs';
 const API_AUTH_URL = 'http://localhost:5000/api/auth';
 
+const API = axios.create({
+  baseURL: 'http://localhost:5000',
+  withCredentials: true, // Include cookies with requests
+});
+
 
 // Get all OCs
 export const getOCs = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await API.get(API_URL);
     return response.data;
   } catch (error) {
     console.error('Error fetching OCs:', error);
@@ -17,7 +22,7 @@ export const getOCs = async () => {
 // Get OC by ID
 export const getOCById = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await API.get(`${API_URL}/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching OC by ID:', error);
@@ -27,7 +32,7 @@ export const getOCById = async (id) => {
 // Create a new OC
 export const createOC = async (ocData) => {
   try {
-    const response = await axios.post(API_URL, ocData);
+    const response = await API.post(API_URL, ocData);
     return response.data;
   } catch (error) {
     console.error('Error creating OC:', error);
@@ -37,7 +42,7 @@ export const createOC = async (ocData) => {
 // Update an OC
 export const updateOC = async (id, ocData) => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, ocData);
+    const response = await API.put(`${API_URL}/${id}`, ocData);
     return response.data;
   } catch (error) {
     console.error('Error updating OC:', error);
@@ -47,7 +52,7 @@ export const updateOC = async (id, ocData) => {
 // Delete an OC
 export const deleteOC = async (id) => {
   try {
-    const response = await axios.delete(`${API_URL}/${id}`);
+    const response = await API.delete(`${API_URL}/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error deleting OC:', error);
@@ -55,11 +60,11 @@ export const deleteOC = async (id) => {
 };
 
 export const registerUser = async (userData) => {
-  const res = await axios.post(`${API_AUTH_URL}/register`, userData);
+  const res = await API.post(`${API_AUTH_URL}/register`, userData);
   return res.data;
 };
 
 export const loginUser = async (userData) => {
-  const res = await axios.post(`${API_AUTH_URL}/login`, userData);
+  const res = await API.post(`${API_AUTH_URL}/login`, userData);
   return res.data;
 };
