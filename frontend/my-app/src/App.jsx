@@ -4,6 +4,11 @@ import axios from 'axios';
 import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
 import Profile from './pages/ProfilePage';
+import OCListGeneralPage from './pages/OCListGeneralPage';
+import UserOCPage from './pages/UserOCPage';
+import OCDetailPage from './pages/OCDetailPage';
+import OCEditPage from './pages/OCEditPage';
+import NewOCPage from './pages/NewOCPage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -23,9 +28,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<OCListGeneralPage/>} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile user={user}/>} />
+        <Route path="/my-ocs" element={<UserOCPage user={user} />} />
+        <Route path="/oc/:id" element={<OCDetailPage />} />
+        <Route path="/oc/edit/:id" element={<OCEditPage />} />
+        <Route path="/oc/add" element={<NewOCPage />} />
       </Routes>
     </BrowserRouter>
   );
