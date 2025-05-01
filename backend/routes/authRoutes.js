@@ -3,12 +3,19 @@ const router = express.Router();
 const { registerUser, loginUser } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 const User = require('../models/userModel');
+const bcrypt = require('bcryptjs');
 
 // POST /api/auth/register - Register a new user
 router.post('/register', registerUser);
 
 // POST /api/auth/login - Login an existing user
 router.post('/login', loginUser);
+
+// POST /api/auth/logout - Logout the current user
+router.post('/logout', protect, (req, res) => {
+    res.clearCookie('token', { path: '/' });
+    res.status(200).json({ message: 'Logged out successfully' });
+});
 
 // GET /api/auth/me - Get the current logged-in user
 router.get('/me', protect, async (req, res) => {

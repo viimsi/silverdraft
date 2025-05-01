@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OCCard from '../components/OCCard';
-import '../styles/OCListGeneralPage.css'; // Import the CSS file
+import '../styles/OCListGeneralPage.css';
 
 const OCListGeneralPage = () => {
   const [ocs, setOCs] = useState([]);
@@ -10,7 +10,7 @@ const OCListGeneralPage = () => {
   useEffect(() => {
     const fetchOCs = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/ocs'); // Fetch all OCs
+        const res = await axios.get('http://localhost:5000/api/ocs');
         setOCs(res.data);
       } catch (err) {
         setError('Failed to fetch OCs. Please try again later.');

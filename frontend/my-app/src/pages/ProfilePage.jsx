@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/ProfilePage.css';
 
 const ProfilePage = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const ProfilePage = ({ user }) => {
   });
 
   const [message, setMessage] = useState('');
-  const [isEditingField, setIsEditingField] = useState({ username: false, email: false, password: false }); // Individual edit states
+  const [isEditingField, setIsEditingField] = useState({ username: false, email: false, password: false });
 
   useEffect(() => {
     if (user) {
@@ -27,40 +28,39 @@ const ProfilePage = ({ user }) => {
 
   const handleSubmit = async (field) => {
     try {
-      const updatedData = { [field]: formData[field] }; // Only send the updated field
+      const updatedData = { [field]: formData[field] };
       if (field === 'password' && !formData.password) {
         setMessage('Password cannot be empty.');
         return;
       }
       const res = await axios.put('http://localhost:5000/api/auth/me', updatedData, { withCredentials: true });
       setMessage(`${field.charAt(0).toUpperCase() + field.slice(1)} updated successfully!`);
-      setIsEditingField({ ...isEditingField, [field]: false }); // Exit edit mode for the field
-      if (field === 'password') setFormData({ ...formData, password: '' }); // Clear password field
+      setIsEditingField({ ...isEditingField, [field]: false });
+      if (field === 'password') setFormData({ ...formData, password: '' });
     } catch (err) {
       setMessage(err.response?.data?.message || `Failed to update ${field}`);
     }
   };
 
   const handleEditClick = (field) => {
-    setIsEditingField({ ...isEditingField, [field]: true }); // Enable edit mode for the field
+    setIsEditingField({ ...isEditingField, [field]: true });
   };
 
   const handleCancelClick = (field) => {
-    setIsEditingField({ ...isEditingField, [field]: false }); // Disable edit mode for the field
+    setIsEditingField({ ...isEditingField, [field]: false });
     setFormData({
       ...formData,
-      [field]: user?.[field] || '', // Reset the field to its original value
+      [field]: user?.[field] || '',
     });
   };
 
   return (
-    <div>
+    <div className="profile-page">
       <h2>Edit Profile</h2>
-      {message && <p>{message}</p>}
+      {message && <p className='message'>{message}</p>}
       <form>
-        {/* Username Field */}
         <div>
-          <label>Username:</label>
+          <label className='label'>Username: </label>
           {isEditingField.username ? (
             <>
               <input
@@ -87,9 +87,8 @@ const ProfilePage = ({ user }) => {
           )}
         </div>
 
-        {/* Email Field */}
         <div>
-          <label>Email:</label>
+          <label className='label'>Email: </label>
           {isEditingField.email ? (
             <>
               <input
@@ -116,9 +115,8 @@ const ProfilePage = ({ user }) => {
           )}
         </div>
 
-        {/* Password Field */}
         <div>
-          <label>Password:</label>
+          <label className='label'>Password: </label>
           {isEditingField.password ? (
             <>
               <input

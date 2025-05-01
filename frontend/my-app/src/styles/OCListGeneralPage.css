@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Lacquer&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 .oc-list-page {
+    width: 80vw;
     padding: 20px;
     text-align: center;
     min-height: 100vh;
   }
   
-  .page-title {
-    font-size: 24px;
+  .oc-list-page .page-title {
+    font-family: "Caveat Brush", 'Comic Sans MS', sans-serif;
+    font-size: 40px;
     color: #333;
     margin-bottom: 20px;
   }

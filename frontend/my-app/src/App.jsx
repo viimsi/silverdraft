@@ -9,6 +9,8 @@ import UserOCPage from './pages/UserOCPage';
 import OCDetailPage from './pages/OCDetailPage';
 import OCEditPage from './pages/OCEditPage';
 import NewOCPage from './pages/NewOCPage';
+import Header from './components/Header';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
 function App() {
@@ -28,16 +30,57 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<OCListGeneralPage/>} />
-        <Route path="/login" element={<Login setUser={setUser} />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile user={user}/>} />
-        <Route path="/my-ocs" element={<UserOCPage user={user} />} />
-        <Route path="/oc/:id" element={<OCDetailPage />} />
-        <Route path="/oc/edit/:id" element={<OCEditPage />} />
-        <Route path="/oc/add" element={<NewOCPage />} />
-      </Routes>
+      <Header user={user} setUser={setUser} />
+      <div className="main-content">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<OCListGeneralPage />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute user={user}>
+                <Profile user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-ocs"
+            element={
+              <ProtectedRoute user={user}>
+                <UserOCPage user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/oc/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <OCDetailPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/oc/edit/:id"
+            element={
+              <ProtectedRoute user={user}>
+                <OCEditPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/oc/add"
+            element={
+              <ProtectedRoute user={user}>
+                <NewOCPage />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

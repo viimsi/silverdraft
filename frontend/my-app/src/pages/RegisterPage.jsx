@@ -15,7 +15,7 @@ const Register = () => {
 
   return (
     <div className='register-page'>
-      <h2>Register</h2>
+      <h2 className='title'>Register</h2>
       <AuthForm onSubmit={handleRegister} isLogin={false} />
     </div>
   );

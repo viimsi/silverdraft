@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Lacquer&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.header-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffc0cb;
+    height: 100px;
+    padding: 50px 20px 5px 20px;
+    transform: translate(0, -25%) rotate(-1.2deg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90vw;
+    z-index: 1000;
+  }
+  
+  .header-left {
+    flex: 1;
+  }
+  
+  .header-title {
+    font-family: "Caveat Brush", 'Comic Sans MS', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #42052b;
+    text-decoration: none;
+  }
+  
+  .header-title:hover {
+    color: #de3b56;
+  }
+  
+  .header-right {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .header-button {
+    padding: 10px 15px;
+    background-color: #f8afbb;
+    color: #42052b;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .header-button:hover {
+    background-color: #ff99aa;
+    color: #42052b;
+  }
+
+@media (max-width: 700px) {
+  .header-button {
+    width: 70px; 
+    padding: 5px;
+  }
+}
+
+@media (max-width: 550px) {
+  .header-button {
+    width: 60px; 
+    padding: 5px;
+  }
+}
+
+@media (max-width: 500px) {
+  .header-button {
+    width: 40px; 
+    padding: 5px;
+  }
+}

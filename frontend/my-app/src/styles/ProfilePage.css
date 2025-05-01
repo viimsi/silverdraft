@@ -1,0 +1,80 @@
+.profile-page {
+    background-color: #fffccf;
+    width: 300px;
+    height: fit-content;
+    padding: 20px;
+    border: 1px solid #ffc778;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%) rotate(-3deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .profile-page h2 {
+    font-family: "Caveat Brush", 'Comic Sans MS', sans-serif;
+    font-size: 32px;
+    margin: 10px;
+  }
+  
+  .profile-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .profile-page input {
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid #ffc778;
+    background-color: transparent;
+    box-shadow: none;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  
+  .profile-page input::placeholder {
+    color: #ffc778;
+    font-style: italic;
+  }
+  
+  .profile-page input:focus {
+    border-bottom: 2px solid #ffc778;
+  }
+  
+  .profile-page button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffb65c;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    color: #42052b;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-page button:hover {
+    background-color: #ffa358;
+  }
+
+  .message {
+    color: rgb(214, 73, 2);
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .label {
+    font-family: "Caveat Brush", 'Comic Sans MS', sans-serif;
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+    margin: 10px;
+  }

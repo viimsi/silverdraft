@@ -1,24 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/OCCard.css';
 
 const OCCard = ({ oc, isOwner, onDelete }) => {
+  const navigate = useNavigate();
   const randomTilt = Math.random() * 10 - 5;
 
   const colors = ['#ffc0cb', '#add8e6', '#fdfd96', '#98fb98', '#ffb6c1'];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
-  return (
-    <Link
-      to={`/oc/${oc._id}`}
-      className="oc-card"
-      style={{
-        transform: `rotate(${randomTilt}deg)`,
-        backgroundColor: randomColor,
-        textDecoration: 'none',
-        color: 'inherit',
-      }}
-    >
+  const handleClick = () => {
+    navigate(`/oc/edit/${oc._id}`);
+  };
+
+  const cardStyle = {
+    transform: `rotate(${randomTilt}deg)`,
+    backgroundColor: randomColor,
+    textDecoration: 'none',
+    color: 'inherit',
+  };
+
+  const cardContent = (
+    <>
       {oc.imageUrl && (
         <img
           src={oc.imageUrl}
@@ -30,21 +33,37 @@ const OCCard = ({ oc, isOwner, onDelete }) => {
       {oc.user?.username && <p><strong>Owner:</strong> {oc.user.username}</p>}
 
       {isOwner && (
-        <div style={{ marginTop: '10px' }}>
-          <Link to={`/oc/edit/${oc._id}`} style={{ marginRight: '10px', color: 'green' }} onClick={(e) => e.stopPropagation()}>
+        <div className="oc-card-owner">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClick();
+            }}
+            className="oc-card-edit"
+          >
             Edit
-          </Link>
+          </button>
           <button
             onClick={(e) => {
               e.stopPropagation();
               onDelete(oc._id);
             }}
-            style={{ color: 'red' }}
+            className="oc-card-delete"
           >
             Delete
           </button>
         </div>
       )}
+    </>
+  );
+
+  return isOwner ? (
+    <div className="oc-card" style={cardStyle}>
+      {cardContent}
+    </div>
+  ) : (
+    <Link to={`/oc/${oc._id}`} className="oc-card" style={cardStyle}>
+      {cardContent}
     </Link>
   );
 };

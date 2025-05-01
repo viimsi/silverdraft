@@ -24,11 +24,14 @@
   
   .auth-input:focus {
     border-bottom: 2px solid #be6171;
+    box-shadow: none;
   }
   
-  .auth-button {
+  .auth-form .auth-button {
+    width: 80%;
+    margin: 0 auto;
     padding: 10px;
-    background-color: #f3aeba;
+    background-color: #f8afbb;
     border: none;
     border-radius: 3px;
     cursor: pointer;

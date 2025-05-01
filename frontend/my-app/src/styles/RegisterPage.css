@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Lacquer&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 .register-page {
     background-color: #ffc0cb;
     width: 300px;
-    height: 300px;
+    height: auto;
     padding: 20px;
     border: 1px solid #d3a3a3;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
@@ -13,4 +16,10 @@
     font-family: 'Comic Sans MS', cursive, sans-serif;
     text-align: center;
     border-radius: 5px;
+}
+
+.title {
+    font-family: "Caveat Brush", 'Comic Sans MS', sans-serif;
+    font-size: 32px;
+    margin: 10px;
 }

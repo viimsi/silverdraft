@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <h2>Login</h2>
+      <h2 className='title'>Login</h2>
       <AuthForm onSubmit={handleLogin} isLogin={true} />
       <button onClick={handleRegisterRedirect} className="register-button">
         Register
