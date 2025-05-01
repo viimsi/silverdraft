@@ -1,0 +1,29 @@
+.oc-list-page {
+    padding: 20px;
+    text-align: center;
+    min-height: 100vh;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .oc-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .no-ocs-message {
+    font-size: 18px;
+    color: #666;
+  }

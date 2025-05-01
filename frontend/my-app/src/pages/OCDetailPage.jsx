@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/OCDetailPage.css';
 
 const OCDetailPage = () => {
-  const { id } = useParams(); // Get the OC ID from the URL
+  const { id } = useParams();
   const [oc, setOC] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchOC = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/ocs/${id}`); // Fetch OC by ID
+        const res = await axios.get(`http://localhost:5000/api/ocs/${id}`);
         setOC(res.data);
       } catch (err) {
         setError('Failed to fetch OC. Please try again later.');
@@ -30,15 +31,69 @@ const OCDetailPage = () => {
   }
 
   return (
-    <div>
-      <h2>{oc.fullname}</h2>
-      {oc.nickname && <p><strong>Nickname:</strong> {oc.nickname}</p>}
-      {oc.age && <p><strong>Age:</strong> {oc.age}</p>}
-      {oc.backstory && <p><strong>Backstory:</strong> {oc.backstory}</p>}
-      {oc.personality && <p><strong>Personality:</strong> {oc.personality}</p>}
-      {oc.likes && <p><strong>Likes:</strong> {oc.likes}</p>}
-      {oc.dislikes && <p><strong>Dislikes:</strong> {oc.dislikes}</p>}
-      {oc.imageUrl && <img src={oc.imageUrl} alt={`${oc.fullname}'s image`} style={{ maxWidth: '300px' }} />}
+    <div className="oc-detail-page">
+      <h2 className="oc-name">{oc.fullname}</h2>
+
+      <div className="top-section">
+      <div className="left-info">
+        <div className="nickname-age-row">
+          {oc.nickname && (
+            <div className="nickname-container">
+              <p className="nickname-title">Nickname:</p>
+              <p className="nickname-db">{oc.nickname}</p>
+            </div>
+          )}
+          {oc.age && (
+            <div className="age-container">
+              <p className="age-title">Age:</p>
+              <p className="age-db">{oc.age}</p>
+            </div>
+          )}
+        </div>
+
+        {oc.backstory && (
+          <div className="backstory-container">
+            <p className="backstory-title">Backstory:</p>
+            <p className="backstory-db">{oc.backstory}</p>
+          </div>
+        )}
+      </div>
+
+
+      {oc.imageUrl && (
+        <div className="right-image">
+          <div className="polaroid">
+            <img
+              src={oc.imageUrl}
+              alt={`${oc.fullname}'s image`}
+              className="oc-image"
+            />
+          </div>
+        </div>
+      )}
+      </div>
+
+      {oc.personality && (
+        <div className="personality-container">
+          <p className="personality-title">Personality:</p>
+          <p className="personality-db">{oc.personality}</p>
+        </div>
+      )}
+
+      <div className="bottom-section">
+        {oc.likes && (
+          <div className="likes-container">
+            <p className="likes-title">Likes:</p>
+            <p className="likes-db">{oc.likes}</p>
+          </div>
+        )}
+        {oc.dislikes && (
+          <div className="dislikes-container">
+            <p className="dislikes-title">Dislikes:</p>
+            <p className="dislikes-db">{oc.dislikes}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

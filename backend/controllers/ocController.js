@@ -29,7 +29,7 @@ const createOC = async (req, res) => {
 
 const getOCs = async (req, res) => {
     try {
-        const ocs = await OC.find();
+        const ocs = await OC.find().populate('user', 'username')
         res.status(200).json(ocs);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -40,7 +40,7 @@ const getOCById = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const oc = await OC.findById(id);
+        const oc = await OC.findById(id).populate('user', 'username');
 
         if (!oc) {
         return res.status(404).json({ message: 'OC not found' });

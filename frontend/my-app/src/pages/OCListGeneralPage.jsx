@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OCCard from '../components/OCCard';
+import '../styles/OCListGeneralPage.css'; // Import the CSS file
 
 const OCListGeneralPage = () => {
   const [ocs, setOCs] = useState([]);
@@ -21,14 +22,14 @@ const OCListGeneralPage = () => {
   }, []);
 
   return (
-    <div>
-      <h2>All User-Created OCs</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div>
+    <div className="oc-list-page">
+      <h2 className="page-title">All User-Created OCs</h2>
+      {error && <p className="error-message">{error}</p>}
+      <div className="oc-card-container">
         {ocs.length > 0 ? (
           ocs.map((oc) => <OCCard key={oc._id} isOwner={false} oc={oc} />)
         ) : (
-          <p>No OCs found.</p>
+          <p className="no-ocs-message">No OCs found.</p>
         )}
       </div>
     </div>

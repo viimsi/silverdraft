@@ -1,33 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/OCCard.css';
 
 const OCCard = ({ oc, isOwner, onDelete }) => {
+  const randomTilt = Math.random() * 10 - 5;
+
+  const colors = ['#ffc0cb', '#add8e6', '#fdfd96', '#98fb98', '#ffb6c1'];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px 0' }}>
+    <Link
+      to={`/oc/${oc._id}`}
+      className="oc-card"
+      style={{
+        transform: `rotate(${randomTilt}deg)`,
+        backgroundColor: randomColor,
+        textDecoration: 'none',
+        color: 'inherit',
+      }}
+    >
+      {oc.imageUrl && (
+        <img
+          src={oc.imageUrl}
+          alt={`${oc.fullname}'s image`}
+          style={{ maxWidth: '200px', borderRadius: '5px', marginBottom: '10px' }}
+        />
+      )}
       <h3>{oc.fullname}</h3>
-      {oc.nickname && <p><strong>Nickname:</strong> {oc.nickname}</p>}
-      {oc.age && <p><strong>Age:</strong> {oc.age}</p>}
-      {oc.backstory && <p><strong>Backstory:</strong> {oc.backstory}</p>}
-      {oc.personality && <p><strong>Personality:</strong> {oc.personality}</p>}
-      {oc.likes && <p><strong>Likes:</strong> {oc.likes}</p>}
-      {oc.dislikes && <p><strong>Dislikes:</strong> {oc.dislikes}</p>}
-      {oc.imageUrl && <img src={oc.imageUrl} alt={`${oc.fullname}'s image`} style={{ maxWidth: '200px' }} />}
-      
-      <Link to={`/oc/${oc._id}`} style={{ color: 'blue', textDecoration: 'underline' }}>
-        View Details
-      </Link>
+      {oc.user?.username && <p><strong>Owner:</strong> {oc.user.username}</p>}
 
       {isOwner && (
         <div style={{ marginTop: '10px' }}>
-          <Link to={`/oc/edit/${oc._id}`} style={{ marginRight: '10px', color: 'green' }}>
+          <Link to={`/oc/edit/${oc._id}`} style={{ marginRight: '10px', color: 'green' }} onClick={(e) => e.stopPropagation()}>
             Edit
           </Link>
-          <button onClick={() => onDelete(oc._id)} style={{ color: 'red' }}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(oc._id);
+            }}
+            style={{ color: 'red' }}
+          >
             Delete
           </button>
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 
