@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthForm from '../components/AuthForm';
 import axios from 'axios';
+import '../styles/RegisterPage.css';
 
 const Register = () => {
   const handleRegister = async data => {
@@ -13,7 +14,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className='register-page'>
       <h2>Register</h2>
       <AuthForm onSubmit={handleRegister} isLogin={false} />
     </div>

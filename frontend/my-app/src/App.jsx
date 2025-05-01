@@ -9,6 +9,7 @@ import UserOCPage from './pages/UserOCPage';
 import OCDetailPage from './pages/OCDetailPage';
 import OCEditPage from './pages/OCEditPage';
 import NewOCPage from './pages/NewOCPage';
+import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import '../styles/AuthForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm = ({ onSubmit, isLogin }) => {
   const [formData, setFormData] = useState({
-    emailOrUsername: '', // Updated field for login
+    emailOrUsername: '',
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,6 +18,11 @@ const AuthForm = ({ onSubmit, isLogin }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(formData);
+    if (isLogin) {
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -24,6 +33,7 @@ const AuthForm = ({ onSubmit, isLogin }) => {
           type="text"
           placeholder="Email or Username"
           onChange={handleChange}
+          className="auth-input"
           required
         />
       ) : (
@@ -32,6 +42,7 @@ const AuthForm = ({ onSubmit, isLogin }) => {
           type="text"
           placeholder="Username"
           onChange={handleChange}
+          className="auth-input"
           required
         />
       )}
@@ -41,6 +52,7 @@ const AuthForm = ({ onSubmit, isLogin }) => {
           type="email"
           placeholder="Email"
           onChange={handleChange}
+          className="auth-input"
           required
         />
       )}
@@ -49,9 +61,12 @@ const AuthForm = ({ onSubmit, isLogin }) => {
         type="password"
         placeholder="Password"
         onChange={handleChange}
+        className="auth-input"
         required
       />
-      <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
+      <button type="submit" className="auth-button">
+        {isLogin ? 'Login' : 'Register'}
+      </button>
     </form>
   );
 };
