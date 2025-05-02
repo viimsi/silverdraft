@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/ProfilePage.css';
+import { updateUser } from '../api/ocAPI';
 
 const ProfilePage = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -28,15 +29,16 @@ const ProfilePage = ({ user }) => {
 
   const handleSubmit = async (field) => {
     try {
-      const updatedData = { [field]: formData[field] };
       if (field === 'password' && !formData.password) {
         setMessage('Password cannot be empty.');
         return;
       }
-      const res = await axios.put('http://localhost:5000/api/auth/me', updatedData, { withCredentials: true });
+      const updatedData = await updateUser(field, formData[field]);
       setMessage(`${field.charAt(0).toUpperCase() + field.slice(1)} updated successfully!`);
       setIsEditingField({ ...isEditingField, [field]: false });
-      if (field === 'password') setFormData({ ...formData, password: '' });
+
+      if (field === 'password') 
+        setFormData({ ...formData, password: '' });
     } catch (err) {
       setMessage(err.response?.data?.message || `Failed to update ${field}`);
     }

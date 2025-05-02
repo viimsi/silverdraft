@@ -5,7 +5,7 @@ const API_AUTH_URL = 'http://localhost:5000/api/auth';
 
 const API = axios.create({
   baseURL: 'http://localhost:5000',
-  withCredentials: true, // Include cookies with requests
+  withCredentials: true,
 });
 
 
@@ -26,6 +26,16 @@ export const getOCById = async (id) => {
     return response.data;
   } catch (error) {
     console.error('Error fetching OC by ID:', error);
+  }
+};
+
+// Get OCs by User ID
+export const getOCsByUserId = async (userId) => {
+  try {
+    const response = await API.get(`${API_URL}/user/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching OCs by User ID:', error);
   }
 };
 
@@ -69,9 +79,9 @@ export const loginUser = async (userData) => {
   return res.data;
 };
 
-export const updateUser = async (userData) => {
+export const updateUser = async (field, value) => {
   try {
-    const response = await API.put(userData);
+    const response = await API.put(`${API_AUTH_URL}/me`, {[field]: value});
     return response.data;
   } catch (error) {
     console.error('Error updating user:', error);

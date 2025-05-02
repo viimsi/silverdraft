@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/OCDetailPage.css';
+import { getOCById } from '../api/ocAPI';
 
 const OCDetailPage = () => {
   const { id } = useParams();
@@ -11,8 +12,8 @@ const OCDetailPage = () => {
   useEffect(() => {
     const fetchOC = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/ocs/${id}`);
-        setOC(res.data);
+        const data = await getOCById(id);
+        setOC(data);
       } catch (err) {
         setError('Failed to fetch OC. Please try again later.');
         console.error(err);

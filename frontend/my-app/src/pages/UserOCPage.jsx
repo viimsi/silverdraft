@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import OCCard from '../components/OCCard';
 import '../styles/UserOCPage.css'; 
+import { deleteOC, getOCsByUserId } from '../api/ocAPI';
 
 const UserOCPage = ({ user }) => {
   const [ocs, setOCs] = useState([]);
@@ -16,8 +17,8 @@ const UserOCPage = ({ user }) => {
       }
 
       try {
-        const res = await axios.get(`http://localhost:5000/api/ocs/user/${user._id}`, { withCredentials: true });
-        setOCs(res.data);
+        const data = await getOCsByUserId(user._id);
+        setOCs(data);
         setError('');
       } catch (err) {
         setError('Failed to fetch your OCs. Please try again later.');
@@ -30,7 +31,7 @@ const UserOCPage = ({ user }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/ocs/${id}`, { withCredentials: true });
+      await deleteOC(id);
       setOCs(ocs.filter((oc) => oc._id !== id));
     } catch (err) {
       console.error('Failed to delete OC:', err);

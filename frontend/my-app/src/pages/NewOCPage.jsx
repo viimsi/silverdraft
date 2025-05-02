@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/OCEditPage.css'; // Reuse the styles from OCEditPage
+import { createOC } from '../api/ocAPI';
 
 const NewOCPage = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const NewOCPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/ocs', formData, { withCredentials: true });
+      await createOC(formData);
       navigate('/my-ocs');
     } catch (err) {
       setError('Failed to add OC. Please try again later.');

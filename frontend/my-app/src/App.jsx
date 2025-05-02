@@ -37,6 +37,12 @@ function App() {
           <Route path="/" element={<OCListGeneralPage />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
+          <Route
+            path="/oc/:id"
+            element={
+                <OCDetailPage />
+            }
+          />
 
           {/* Protected Routes */}
           <Route
@@ -52,14 +58,6 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <UserOCPage user={user} />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/oc/:id"
-            element={
-              <ProtectedRoute user={user}>
-                <OCDetailPage />
               </ProtectedRoute>
             }
           />

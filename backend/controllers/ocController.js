@@ -79,7 +79,6 @@ const updateOC = async (req, res) => {
         return res.status(404).json({ message: 'OC not found' });
         }
 
-        // Update fields
         oc.fullname = fullname || oc.fullname;
         oc.nickname = nickname || oc.nickname;
         oc.age = age || oc.age;
@@ -107,7 +106,6 @@ const deleteOC = async (req, res) => {
         return res.status(404).json({ message: 'OC not found' });
         }
 
-        // Use findByIdAndDelete instead of remove
         await OC.findByIdAndDelete(id);
 
         res.status(200).json({ message: 'OC removed successfully' });

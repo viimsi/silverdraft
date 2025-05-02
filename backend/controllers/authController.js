@@ -2,7 +2,6 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// Replace with your own strong secret or load from .env
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey';
 
 const registerUser = async (req, res) => {

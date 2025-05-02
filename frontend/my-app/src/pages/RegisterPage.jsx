@@ -2,12 +2,17 @@ import React from 'react';
 import AuthForm from '../components/AuthForm';
 import axios from 'axios';
 import '../styles/RegisterPage.css';
+import { registerUser } from '../api/ocAPI';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-  const handleRegister = async data => {
+  const navigate = useNavigate();
+
+  const handleRegister = async (data) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', data);
+      await registerUser(data);
       alert('Registration successful!');
+      navigate('/login');
     } catch (err) {
       alert(err.response.data.message || 'Registration failed');
     }

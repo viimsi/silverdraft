@@ -35,7 +35,7 @@
 }
 
 .oc-card-edit:hover {
-  color: #45a049; /* Darker green on hover */
+  color: #45a049; 
 }
 
 .oc-card-delete {
@@ -47,5 +47,5 @@
 }
 
 .oc-card-delete:hover {
-  background-color: #ff1a1a; /* Darker red on hover */
+  background-color: #ff1a1a;
 }

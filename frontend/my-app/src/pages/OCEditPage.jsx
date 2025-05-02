@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/OCEditPage.css'; // Import the new CSS file
+import { updateOC } from '../api/ocAPI';
 
 const OCEditPage = () => {
   const { id } = useParams();
@@ -21,8 +22,8 @@ const OCEditPage = () => {
   useEffect(() => {
     const fetchOC = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/ocs/${id}`);
-        setFormData(res.data);
+        const data = await updateOC(id, formData);
+        setFormData(data);
       } catch (err) {
         setError('Failed to fetch OC details.');
         console.error(err);
